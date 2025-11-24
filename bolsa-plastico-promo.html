@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsas Ecológicas con Tapas Recicladas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: #2d5016;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            color: white;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-logo {
+            height: 60px;
+            width: auto;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .navbar-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 1em;
+        }
+
+        .navbar-menu a:hover {
+            color: #c3e88d;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                gap: 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c28 50%, #6b9e3e 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #2d5016;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.4s backwards;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .features {
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            color: #2d5016;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #2d5016, #6b9e3e);
+            border-radius: 2px;
+        }
+
+        .historia {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .historia-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        .timeline {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .timeline-item {
+            padding: 20px 0;
+            border-left: 3px solid #2d5016;
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            background: #2d5016;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #2d5016;
+        }
+
+        .timeline-year {
+            color: #2d5016;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .historia-text {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .mision {
+            background: white;
+        }
+
+        .mision-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .mision-card {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c28 50%, #6b9e3e 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mision-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .mision-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .mision-card p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            position: relative;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .historia-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="#" class="navbar-brand">
+                <img src="images/logosinFondo.png" alt="EcoJovs Logo" class="navbar-logo">
+            </a>
+            <ul class="navbar-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#uso">Uso</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#mision">Misión</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>♻️ Bolsas Ecológicas con Tapas Recicladas</h1>
+            <p>Transformamos residuos en accesorios únicos, resistentes y amigables con el planeta</p>
+        </div>
+    </section>
+
+    <section class="features" id="uso">
+        <div class="container">
+            <h2 class="section-title">¿Cuál es su uso, para qué sirve y qué necesidad satisface?</h2>
+            
+            <div style="background: white; padding: 40px; border-radius: 15px; margin: 30px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #2d5016; font-size: 1.8em; margin-bottom: 20px;">📦 Uso del Producto</h3>
+                <p style="font-size: 1.1em; line-height: 1.8; margin-bottom: 15px;">
+                    La bolsa elaborada con tapas de botella recicladas funciona como un accesorio resistente y reutilizable que puede emplearse en diversas actividades cotidianas, tales como:
+                </p>
+                <ul style="font-size: 1.1em; line-height: 1.8; margin-left: 30px;">
+                    <li>Transporte de objetos personales</li>
+                    <li>Uso como bolso de mano o de diario</li>
+                    <li>Complemento estético y funcional para actividades escolares, laborales o recreativas</li>
+                </ul>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>¿Para qué sirve?</h3>
+                    <p style="text-align: left; margin-top: 15px;">
+                        <strong>Durabilidad:</strong> Las tapas de plástico proporcionan una estructura firme y resistente.
+                        <br><br>
+                        <strong>Reutilización continua:</strong> Puede emplearse múltiples veces sin deteriorarse fácilmente.
+                        <br><br>
+                        <strong>Sustitución de bolsas contaminantes:</strong> Reduce la dependencia del plástico de un solo uso.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Necesidad Ambiental</h3>
+                    <p style="text-align: left;">
+                        Reduce la contaminación al reutilizar tapas plásticas que normalmente terminarían en rellenos sanitarios o cuerpos de agua. Promueve una cultura de reciclaje y consumo responsable.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <h3>Necesidad Práctica</h3>
+                    <p style="text-align: left;">
+                        Proporciona una bolsa funcional, útil y resistente para el uso diario, adaptándose a múltiples necesidades y situaciones cotidianas.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Necesidad Social y Educativa</h3>
+                    <p style="text-align: left;">
+                        Fomenta la conciencia ecológica al demostrar que los residuos pueden transformarse en productos útiles. Conecta con consumidores interesados en productos sostenibles y artesanales.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="historia" id="galeria">
+        <div class="container">
+            <h2 class="section-title">Galería de Imágenes</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px;">
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="images/bolsa_frontal.png" alt="Bolsa 1" style="width: 100%; border-radius: 10px;">
+                    <p style="text-align: center; margin-top: 15px; font-weight: bold; color: #2d5016;">Diseño frontal</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="images/bolsa_detallada.png" alt="Bolsa 2" style="width: 100%; border-radius: 10px;">
+                    <p style="text-align: center; margin-top: 15px; font-weight: bold; color: #2d5016;">Detalle de tapas</p>
+                </div>
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <img src="images/bolsa_uso.png" alt="Bolsa 3" style="width: 100%; border-radius: 10px;">
+                    <p style="text-align: center; margin-top: 15px; font-weight: bold; color: #2d5016;">Vista en uso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mision" id="mision">
+        <div class="container">
+            <h2 class="section-title">Misión y Visión Empresarial</h2>
+            <div class="mision-cards">
+                <div class="mision-card">
+                    <h3>🎯 Nuestra Misión</h3>
+                    <p>
+                        Crear productos funcionales y estéticamente atractivos a partir de materiales reciclados, 
+                        especialmente tapas de botella, con el propósito de reducir el impacto ambiental, 
+                        promover el reciclaje creativo y ofrecer a nuestros clientes soluciones útiles, 
+                        resistentes y sostenibles para su vida diaria.
+                    </p>
+                </div>
+                <div class="mision-card">
+                    <h3>👁️ Nuestra Visión</h3>
+                    <p>
+                        Consolidarnos como una empresa líder en la elaboración de productos ecológicos 
+                        hechos con materiales reciclados, expandiendo nuestra línea de artículos y alcanzando 
+                        un impacto significativo en la reducción de residuos plásticos a nivel local, nacional 
+                        e internacional. Aspiramos a ser un referente de innovación, responsabilidad ambiental 
+                        y diseño sostenible.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Bolsas Ecológicas con Tapas Recicladas</p>
+        <p style="margin-top: 10px;">Transformando residuos en productos útiles y sostenibles</p>
+    </footer>
+</body>
+</html>
